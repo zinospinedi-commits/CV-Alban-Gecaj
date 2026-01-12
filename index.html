@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alban Gecaj – Power User Payments</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --accent: #2c3e50;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 48px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 6px;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .toggle {
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--accent);
+      user-select: none;
+    }
+
+    section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 8px 0 0;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    .job {
+      margin-bottom: 28px;
+    }
+
+    footer {
+      margin-top: 64px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Alban Gecaj</h1>
+        <div class="subtitle" data-en="Power User Payments" data-de="Power User Payments"></div>
+        <div class="subtitle" data-en="Affoltern am Albis, Switzerland" data-de="Affoltern am Albis, Schweiz"></div>
+        <div class="subtitle">alban.gecaj@hotmail.com · +41 79 958 82 03</div>
+      </div>
+      <div class="toggle" onclick="toggleLang()">EN / DE</div>
+    </header>
+
+    <section>
+      <h2 data-en="Profile" data-de="Profil"></h2>
+      <p data-en="Payments specialist with solid experience in payment operations within a Swiss Tier-1 bank. Acts as a key functional contact for complex non-STP payment cases and as an interface between Operations, IT, and business stakeholders."
+         data-de="Payments-Spezialist mit fundierter Erfahrung im operativen Zahlungsverkehr einer Schweizer Grossbank. Fachliche Anlaufstelle für komplexe Non-STP-Zahlungen sowie Schnittstelle zwischen Operations, IT und Fachbereichen."></p>
+    </section>
+
+    <section>
+      <h2 data-en="Professional Experience" data-de="Berufserfahrung"></h2>
+
+      <div class="job">
+        <h3>Power User Payments – Credit Suisse AG / UBS AG</h3>
+        <div class="subtitle" data-en="Dec 2022 – Present" data-de="Dez 2022 – heute"></div>
+        <ul>
+          <li data-en="Analysis and processing of complex non-STP payments" data-de="Analyse und Bearbeitung komplexer Non-STP-Zahlungen"></li>
+          <li data-en="Interface between IT, Operations and business units" data-de="Fachliche Schnittstelle zwischen IT, Operations und Business"></li>
+          <li data-en="Business representative for change requests and releases" data-de="Business-Vertretung bei Change Requests und Releases"></li>
+          <li data-en="Execution of UAT including functional sign-off" data-de="Durchführung von UAT inkl. fachlichem Sign-off"></li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Supervisor – Avis Budget Group</h3>
+        <div class="subtitle" data-en="May 2018 – Nov 2022" data-de="Mai 2018 – Nov 2022"></div>
+        <ul>
+          <li data-en="Staff planning and operational responsibility" data-de="Verantwortung für Personalplanung und operative Organisation"></li>
+          <li data-en="Revenue responsibility for Zurich Downtown location" data-de="Umsatzverantwortung für den Standort Zürich Downtown"></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-en="Expertise" data-de="Fachliche Schwerpunkte"></h2>
+      <ul>
+        <li>ISO 20022 / XML</li>
+        <li>Cross-Border Payments (CBPR+)</li>
+        <li>SWIFT, NPS+</li>
+        <li>UAT, Releases, Workarounds</li>
+      </ul>
+    </section>
+
+    <footer data-en="References available upon request" data-de="Referenzen auf Anfrage"></footer>
+  </div>
+
+  <script>
+    let lang = 'en';
+
+    function toggleLang() {
+      lang = lang === 'en' ? 'de' : 'en';
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = el.dataset[lang];
+      });
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    toggleLang();
+  </script>
+</body>
+</html>
